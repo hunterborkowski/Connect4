@@ -65,7 +65,8 @@ public class Connect4Client extends Application
     private String host = "localhost";
 
     /**
-     *
+     *Initializes the GUI and connects it to server
+     * 
      * @param primaryStage
      * @throws IOException
      */
@@ -243,6 +244,12 @@ public class Connect4Client extends Application
         connectToServer(root);
     }
 
+    /**
+     * Connects to server and initializes Data in and Data out 
+     * 
+     * @param primaryStage
+     * @throws IOException
+     */
     private void connectToServer(Pane root) {
         try {
             // Create a socket to connect to the server
@@ -319,13 +326,6 @@ public class Connect4Client extends Application
     }
 
     /**
-     * Send this player's move to the server
-     */
-    private void sendMove() throws IOException {
-        toServer.writeInt(columnSelected); // Send the selected column
-    }
-
-    /**
      * Receive info from the server
      */
     private void receiveInfoFromServer(Pane root) throws IOException {
@@ -359,6 +359,12 @@ public class Connect4Client extends Application
         }
     }
 
+    /**
+     *Receives info about other players move and creates a circle at that spot
+     * 
+     * @param primaryStage
+     * @throws IOException
+     */
     private void receiveMove(Pane root) throws IOException {
         // Get the other player's move
         int row = fromServer.readInt();
@@ -368,11 +374,12 @@ public class Connect4Client extends Application
     }
 
     /**
-     *
-     * @param xLocation
-     * @param yLocation
-     * @param color1
-     * @return
+     * returns a circle at the provided x,y location with the provided color
+     * 
+     * @param xLocation 
+     * @param yLocation 
+     * @param color1 
+     * @return  
      */
     public Circle drawCircle(int xLocation, int yLocation, int color1) {
         int locationX = xLocation;
@@ -434,7 +441,15 @@ public class Connect4Client extends Application
         return move;
 
     }
-
+    
+    
+    /**
+     *Interrupts waitForPlayerAction() method and sends and receives server info
+     * when on-screen rectangle is clicked if it is the appropriate players turn
+     * 
+     * @param primaryStage
+     * @throws IOException
+     */
     private void handleMouseClick(int col, Pane root) {
         // If cell is not occupied and the player has the turn
 

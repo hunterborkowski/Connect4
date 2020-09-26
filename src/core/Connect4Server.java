@@ -11,11 +11,20 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
+/**
+ *
+ * @author Hunter
+ */
 public class Connect4Server extends Application 
     implements Connect4Constants {
   private int sessionNo = 1; // Number a session
   
-  @Override // Override the start method in the Application class
+    /**
+     *Initializes server GUI
+     * 
+     * @param primaryStage
+     */
+    @Override // Override the start method in the Application class
   public void start(Stage primaryStage) {
     TextArea taLog = new TextArea();
 
@@ -80,7 +89,9 @@ public class Connect4Server extends Application
     }).start();
   }
 
-  // Define the thread class for handling a new session for two players
+  /**
+  * Define the thread class for handling a new session for two players
+  */
   class HandleASession implements Runnable, Connect4Constants {
     private Socket player1;
     private Socket player2;
@@ -104,7 +115,9 @@ public class Connect4Server extends Application
      
     }
   
-    /** Implement the run() method for the thread */
+    /** 
+     * Implement the run() method for the thread
+    */
     public void run() {
       try {
         // Create data input and output streams
@@ -178,7 +191,9 @@ public class Connect4Server extends Application
       }
     }
   
-    /** Send the move to other player */
+    /** 
+     * Send the move to other player 
+     */
     private void sendMove(DataOutputStream out, int row, int column, int color)
         throws IOException {
       out.writeInt(row); // Send row index
@@ -196,7 +211,8 @@ public class Connect4Server extends Application
   
   /**
    * The main method is only needed for the IDE with limited
-   * JavaFX support. Not needed for running from the command line.
+   * JavaFX support.Not needed for running from the command line.
+     * @param args
    */
   public static void main(String[] args) {
     launch(args);

@@ -74,7 +74,7 @@ public class Connect4Client extends Application
     public void start(Stage primaryStage) throws IOException {
         // Pane to hold cell
 
-        Connect4 game = new Connect4();
+        
 
         Pane root = new Pane();
         Circle r1c1 = new Circle(75.0f, 75.0f, 50.0f);
